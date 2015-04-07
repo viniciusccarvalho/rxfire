@@ -40,40 +40,37 @@ public class StreamAggregatorTest {
     private CountDownLatch latch;
 
     @Before
-    public void setup(){
+    public void setup() {
         latch = new CountDownLatch(100);
         pool.submit(new StockTicker());
     }
 
     @Test
-    public void testStreamAggregation() throws Exception{
+    public void testStreamAggregation() throws Exception {
         Observable<CqEvent> observable = streamService.toObservable("SELECT * FROM /stocks t where t.value > 1");
-       observable.map((event) -> {
-            return (Stock)((PdxInstance)event.getNewValue()).getObject();
+        observable.map((event) -> {
+            return (Stock) ((PdxInstance) event.getNewValue()).getObject();
         }).filter((stock) -> {
-           return stock.getId().equals("EMC");
+            return stock.getId().equals("EMC");
         }).take(5).subscribe((stock) -> {
                     System.out.println(stock);
                 }, (error) -> {
-                   error.printStackTrace();
-               }
+                    error.printStackTrace();
+                }
         );
-
-
-
 
 
         latch.await();
     }
 
 
-     class StockTicker implements Runnable{
+    class StockTicker implements Runnable {
         @Override
         public void run() {
             Random r = new Random();
 
-            while(latch.getCount() > 0){
-                Stock stock = new Stock(symbols.get(r.nextInt(symbols.size())),r.nextDouble()*100,System.currentTimeMillis());
+            while (latch.getCount() > 0) {
+                Stock stock = new Stock(symbols.get(r.nextInt(symbols.size())), r.nextDouble() * 100, System.currentTimeMillis());
                 StreamAggregatorTest.this.repository.save(stock);
                 latch.countDown();
                 try {
