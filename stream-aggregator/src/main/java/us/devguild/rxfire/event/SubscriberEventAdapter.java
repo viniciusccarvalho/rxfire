@@ -20,8 +20,5 @@ public class SubscriberEventAdapter implements EventAdapter{
         subscriber.onNext(event);
     }
 
-    @Override
-    public void handleEvent(Throwable t) {
-        subscriber.onError(t);
-    }
+
 }

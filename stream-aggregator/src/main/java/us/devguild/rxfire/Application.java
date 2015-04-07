@@ -13,6 +13,7 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 
 @SpringBootApplication
 @ImportResource("/cache-context.xml")
+@EnableGemfireRepositories
 public class Application {
 
     public static void main(String[] args) {

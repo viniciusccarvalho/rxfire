@@ -5,9 +5,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/gemfire http://www.springframework.org/schema/gemfire/spring-gemfire.xsd">
 
-    <gfe:client-cache pool-name="client"/>
+    <gfe:client-cache pool-name="client" pdx-ignore-unread-fields="true" pdx-serializer-ref="autoSerializer" pdx-read-serialized="true"/>
+    <bean id="autoSerializer" class="com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer">
+        <constructor-arg index="0" value="us.devguild.rxfire.model.*"></constructor-arg>
+    </bean>
     <gfe:pool id="client" subscription-enabled="true">
         <gfe:server host="localhost" port="40404"/>
     </gfe:pool>
+    <gfe:client-region id="stocks" shortcut="PROXY">
+    </gfe:client-region>
+    <bean id="errorHandler" class="us.devguild.rxfire.event.GenericErrorHandler"/>
+    <gfe:cq-listener-container id="cqlc" error-handler="errorHandler">
 
+
+    </gfe:cq-listener-container>
 </beans>

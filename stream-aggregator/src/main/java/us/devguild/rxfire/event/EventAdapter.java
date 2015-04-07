@@ -8,7 +8,6 @@ import com.gemstone.gemfire.cache.query.CqEvent;
 public interface EventAdapter {
 
     void handleEvent(CqEvent event);
-    void handleEvent(Throwable t);
 
 
 }

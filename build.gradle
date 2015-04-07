@@ -54,7 +54,8 @@ project(":stream-aggregator") {
 	archivesBaseName = "aggregator"
 		
 	dependencies {
-	   compile('io.reactivex:rxjava:1.0.3')
+	    compile('io.reactivex:rxjava:1.0.3')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
 	}
 
 }
