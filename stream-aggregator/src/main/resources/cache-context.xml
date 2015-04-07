@@ -4,20 +4,10 @@
 	xmlns:gfe="http://www.springframework.org/schema/gemfire"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/gemfire http://www.springframework.org/schema/gemfire/spring-gemfire.xsd">
- <gfe:cache id="my-cache"/>
 
     <gfe:client-cache pool-name="client"/>
     <gfe:pool id="client" subscription-enabled="true">
         <gfe:server host="localhost" port="40404"/>
     </gfe:pool>
-    <gfe:cache-server id="cache-server" auto-startup="true" cache-ref="my-cache" bind-address="localhost"
-                      port="40404" host-name-for-clients="localhost" groups="test-server"
-                      load-poll-interval="2000" max-connections="22" max-threads="16"
-                      max-message-count="1000" max-time-between-pings="30000">
-        <gfe:subscription-config capacity="1000" eviction-type="ENTRY" />
-
-    </gfe:cache-server>
-
-    <gfe:local-region id="stocks" cache-ref="my-cache"/>
 
 </beans>

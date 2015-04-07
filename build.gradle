@@ -1,11 +1,12 @@
 buildscript {
     repositories {
         maven { url "https://repo.spring.io/libs-release" }
+        maven { url "https://repo.spring.io/snapshot" }
         mavenLocal()
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.0.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
     }
 }
 
@@ -25,11 +26,13 @@ subprojects {
    		mavenLocal()
 	    mavenCentral()
     	maven { url "https://repo.spring.io/libs-release" }
+        maven { url "https://repo.spring.io/snapshot" }
 	}
 
 	
 	dependencies {
-    	compile("org.springframework.boot:spring-boot-starter-data-gemfire")
+        compile("org.springframework.boot:spring-boot-starter-web")
+        compile("org.springframework.data:spring-data-gemfire:1.7.0.BUILD-SNAPSHOT")
     	testCompile("junit:junit:4.11")
     	testCompile("org.mockito:mockito-all:1.9.5")
 	}

@@ -3,7 +3,9 @@
 *.ids
 *.iws
 .idea/
-
+*.if
+*.lk
+vf.gf.*
 .project
 .metadata
 local.properties
