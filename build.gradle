@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.0.RELEASE")
+    }
+}
+
+version = "1.0.0"
+
+subprojects {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'idea'
+	apply plugin: 'spring-boot'
+	
+	repositories {
+   		mavenLocal()
+	    mavenCentral()
+    	maven { url "https://repo.spring.io/libs-release" }
+	}
+
+	
+	dependencies {
+    	compile("org.springframework.boot:spring-boot-starter-data-gemfire")
+    	testCompile("junit:junit:4.11")
+    	testCompile("org.mockito:mockito-all:1.9.5")
+	}
+	
+}
+
+
+
+project(":server") {
+	archivesBaseName = "gemfire-server-node"
+}
+
+project(":publisher"){
+	archivesBaseName = "event-publisher"
+}
+
+project(":stream-aggregator") {
+	
+	archivesBaseName = "aggregator"
+		
+	dependencies {
+	   compile('io.reactivex:rxjava:1.0.3')
+	}
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
