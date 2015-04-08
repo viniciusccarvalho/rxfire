@@ -1,7 +1,7 @@
 # rxfire
 ### Reactive Extensions for gemfire
 
-Code from (blog post)[http://vcc.devguild.us/blog/2015/04/07/rxfire-gemfire-meets-rx/] on how to convert [Gemfire](http://pivotal.io/big-data/pivotal-gemfire) Continuous Query support into [RXJava](https://github.com/ReactiveX/RxJava) streams
+Code from [blog post](http://vcc.devguild.us/blog/2015/04/07/rxfire-gemfire-meets-rx/) on how to convert [Gemfire](http://pivotal.io/big-data/pivotal-gemfire) Continuous Query support into [RXJava](https://github.com/ReactiveX/RxJava) streams
 
 To run, simply start the gemfire server that is on the /server subproject:
 
